@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikpresja</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <div class="main-content">
+        <form class="input-form" onsubmit="handleSubmit(event)">
+            <textarea id="user-input" placeholder="SHKRUAJ" required></textarea>
+            <button type="submit" class="submit-btn">GET</button>
+        </form>
+
+        <div class="submitted-content" id="submitted-content">
+            <!--<h2>POST</h2>-->
+            <div class="submitted-text" id="text-display"></div>
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <div class="row">
+            <h3>REVIEW</h3>
+        </div>
+        <div class="row">
+            <h3>SUGGESTIONS <span class="suggestions-box">0</span></h3>
+        </div>
+        <div class="column">
+            <p> <br> </p>
+        </div>
+    </div>
+
+    <div class="footnote">
+        <!-- <div class="logo">
+            <img src="logo2.png" alt="Logo 2" class="logo-img" id="logo2">
+        </div> -->
+        <div class="left-text">
+            <img src="images/logo.png" alt="PJEK" class="logo-img" id="logo1">
+            <span>2025<br>PIKË PRESJE * GJIMNAZI PUBLIK "QEMAL STAFA"</span>
+        </div>
+    </div>
+
+    <!-- <div class="control-buttons">
+        <button class="invert-btn" onclick="invertColors()">Invert Colors</button>
+        <input type="color" class="color-picker-btn" id="accent-color-picker" value="#cccccc" onchange="changeAccentColor(this.value)">
+    </div> -->
+</body>
+</html>
