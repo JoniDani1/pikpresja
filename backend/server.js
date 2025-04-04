@@ -11,9 +11,12 @@ const fileUpload = require("express-fileupload");
 const { OpenAI } = require("openai");
 
 const app = express();
-const openai = new OpenAI({ apiKey: "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" });
+const openai = new OpenAI({
+    apiKey: "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"
+});
 
-const frontendPath = path.join(__dirname, "../frontend");
+// ✅ Updated frontend path from "frontend" to "docs"
+const frontendPath = path.join(__dirname, "docs");
 app.use(express.static(frontendPath));
 
 app.get("/", (req, res) => {
@@ -101,7 +104,6 @@ app.post("/grammarcheck", async (req, res) => {
 
         for (let i = 0; i < changes.length; i++) {
             const part = changes[i];
-
             if (part.removed) {
                 const next = changes[i + 1];
                 if (next && next.added) {
@@ -121,9 +123,6 @@ app.post("/grammarcheck", async (req, res) => {
         res.status(500).json({ error: "Failed to process grammar check." });
     }
 });
-
-
-
 
 app.post("/upload", async (req, res) => {
     try {
