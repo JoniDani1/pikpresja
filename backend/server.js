@@ -11,9 +11,7 @@ const fileUpload = require("express-fileupload");
 const { OpenAI } = require("openai");
 
 const app = express();
-const openai = new OpenAI({
-    apiKey: "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"
-});
+const openai = new OpenAI({ apiKey: process.env.OPEN_API_KEY });-p[00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000[
 
 // ✅ Updated frontend path from "frontend" to "docs"
 const frontendPath = path.join(__dirname, "docs");
