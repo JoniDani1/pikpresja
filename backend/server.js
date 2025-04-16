@@ -6,17 +6,16 @@ const fs = require("fs").promises;
 const nspell = require("nspell");
 const cors = require("cors");
 const path = require("path");
+const multer = require("multer");
 require("dotenv").config();
-const fileUpload = require("express-fileupload");
+//const fileUpload = require("express-fileupload");
+
 const { OpenAI } = require("openai");
 
 const app = express();
-const openai = new OpenAI({
-    apiKey: "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"
-});
+const openai = new OpenAI({ apiKey: process.env.OPEN_API_KEY });
 
-// ✅ Updated frontend path from "frontend" to "docs"
-const frontendPath = path.join(__dirname, "docs");
+const frontendPath = path.join(__dirname, "../docs");
 app.use(express.static(frontendPath));
 
 app.get("/", (req, res) => {
@@ -25,7 +24,7 @@ app.get("/", (req, res) => {
 
 app.use(cors());
 app.use(express.json());
-app.use(fileUpload({ limits: { fileSize: 5 * 1024 * 1024 }, abortOnLimit: true, createParentPath: true }));
+//app.use(fileUpload({ limits: { fileSize: 5 * 1024 * 1024 }, abortOnLimit: true, createParentPath: true }));
 
 const uploadsDir = path.join(__dirname, "uploads");
 fs.mkdir(uploadsDir, { recursive: true }).catch(console.error);
@@ -104,6 +103,7 @@ app.post("/grammarcheck", async (req, res) => {
 
         for (let i = 0; i < changes.length; i++) {
             const part = changes[i];
+
             if (part.removed) {
                 const next = changes[i + 1];
                 if (next && next.added) {
@@ -124,36 +124,29 @@ app.post("/grammarcheck", async (req, res) => {
     }
 });
 
-app.post("/upload", async (req, res) => {
-    try {
-        if (!req.files || !req.files.file) return res.status(400).json({ error: "No file uploaded." });
 
-        let uploadedFile = req.files.file;
-        if (path.extname(uploadedFile.name).toLowerCase() !== ".txt") {
-            return res.status(400).json({ error: "Only .txt files are allowed." });
-        }
-
-        const filePath = path.join(uploadsDir, uploadedFile.name);
-        await uploadedFile.mv(filePath);
-        const fileContent = await fs.readFile(filePath, "utf8");
-        const spellChecker = await spellCheckerPromise;
-
-        const words = fileContent.split(/\s+/).map(cleanWord);
-        const results = words.map((word) => {
-            if (isNumber(word)) return { word, suggestions: [] };
-            if (!spellChecker.correct(word)) {
-                return { word, suggestions: spellChecker.suggest(word).slice(0, maxSuggestions) };
-            }
-            return { word, suggestions: [] };
-        });
-
-        await fs.unlink(filePath);
-        res.json(results);
-    } catch (error) {
-        console.error("Error processing file upload:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+const storage = multer.diskStorage({
+    destination: (req,file,cb)=>{
+        cb(null,'uploads/')
+    },
+    filename:(req,file,cb)=>{
+        cb(null,Date.now() + '-' + file.originalname)
     }
-});
+})
+
+const upload = multer({ storage });
+
+app.post("/upload", upload.single("file"), (req, res) => {
+    if(!req.file){
+        return res.status(400).json({ error: "No file uploaded." });
+    }
+try{
+   res.json({ message: "File uploaded successfully.", filePath: req.file.path });
+} catch (error) {
+    console.error("Upload error:", error);
+    res.status(500).json({ error: "Server error during file upload." });
+  }
+})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

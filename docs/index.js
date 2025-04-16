@@ -33,16 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // ✨ Display everything
             displayArea.innerHTML = `
-    <h3>Corrections:</h3>
-    <div class="correction-line">
-        ${formatCorrections(text, grammarData.suggestions)}
-    </div>
-    <hr>
-    <h3>Full Corrected Version:</h3>
-    <div class="highlight">${grammarData.corrected}</div>
-    <p><button onclick="navigator.clipboard.writeText('${grammarData.corrected.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">Copy</button></p>
-`;
-
+                <h3>Corrections:</h3>
+                ${formatCorrections(text, grammarData.suggestions)}
+                <hr>
+                <h3>Full Corrected Version:</h3>
+                <div class="highlight">${grammarData.corrected}</div>
+                <p><button onclick="navigator.clipboard.writeText('${grammarData.corrected.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">Copy</button></p>
+            `;
 
             suggestionsBox.textContent = grammarData.suggestions.length;
             reviewPanel.innerHTML = generateSuggestionsHTML(grammarData.suggestions);
@@ -60,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function formatCorrections(originalText, results) {
         let formattedText = originalText;
         results.forEach(({ word, suggestions }) => {
-            if (word && suggestions.length > 0) {
+            if (suggestions.length > 0) {
                 formattedText = formattedText.replace(
                     new RegExp(`\\b${word}\\b`, "gi"),
                     `<span class="highlight">${word} → ${suggestions[0]}</span>`
@@ -69,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         return formattedText;
     }
-    
 
     function generateSuggestionsHTML(results) {
         return results
