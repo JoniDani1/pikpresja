@@ -86,7 +86,7 @@ app.post("/grammarcheck", async (req, res) => {
             messages: [
                 {
                     role: "system",
-                    content: "You are an assistant that only checks and corrects grammar or spelling mistakes. Do not comment, summarize, explain, translate, or do anything outside of correcting the text."
+                    content: "You are an assistant that only checks and corrects grammar or spelling mistakes in Albanian language . Do not comment, summarize, explain, translate, or do anything outside of correcting the text."
                 },
                 {
                     role: "user",

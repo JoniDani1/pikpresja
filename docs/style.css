@@ -289,3 +289,93 @@ body.inverted {
     margin: 2px; /* ✅ Reduces clumping between words */
 }
 
+.submit-btn.secondary {
+    background: linear-gradient(to right, #4caf50, #81c784);
+    color: white;
+    margin-top: 10px;
+}
+/* ========== ADD THESE NEW STYLES ========== */
+:root {
+    --animation-timing: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Add to existing :root */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes highlightPulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0.5; }
+}
+
+/* Add after existing body styles */
+body { 
+    opacity: 0;
+    animation: fadeIn 0.8s var(--animation-timing) forwards; 
+}
+
+/* Add after .main-content declaration */
+.main-content {
+    animation: fadeIn 0.8s var(--animation-timing) 0.2s both;
+}
+
+/* Add after existing .right-panel styles */
+.right-panel {
+    animation: slideInRight 0.8s var(--animation-timing) 0.4s both;
+    background: linear-gradient(145deg, rgba(152, 177, 158, 0.95) 0%, rgba(152, 177, 158, 0.85) 100%);
+    backdrop-filter: blur(8px);
+    box-shadow: -8px 0 24px rgba(0,0,0,0.05);
+    border-left: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Add after .footnote declaration */
+.footnote {
+    animation: fadeIn 0.8s var(--animation-timing) 0.6s both;
+}
+
+/* Add these enhancements AFTER existing styles for each component */
+#user-input:focus { /* Add after existing #user-input styles */
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.2);
+    transform: scale(1.005);
+}
+
+.submit-btn { /* Add after existing .submit-btn styles */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+}
+
+/* Add loading bar styles at the end */
+.loading-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+    z-index: 999;
+}
+
