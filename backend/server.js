@@ -13,7 +13,10 @@ require("dotenv").config();
 const { OpenAI } = require("openai");
 
 const app = express();
+<<<<<<< HEAD
 const openai = new OpenAI({ apiKey: process.env.OPEN_API_KEY });
+=======
+>>>>>>> e85ad03acf50d7a7c19208fd7d76a4484f226251
 
 const frontendPath = path.join(__dirname, "../docs");
 app.use(express.static(frontendPath));
