@@ -1,23 +1,32 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "express-fileupload": "^1.5.1",
-    "fs": "^0.0.1-security",
-    "multer": "^1.4.5-lts.2",
-    "nspell": "^2.1.5",
-    "openai": "^4.91.1"
-  },
-  "description": ""
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "commonjs",
+    "scripts": {
+        "test": "jest",
+        "start": "node server.js",
+        "format": "prettier --write .",
+        "lint": "eslint ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "express-fileupload": "^1.5.1",
+        "express-rate-limit": "^8.2.1",
+        "fs": "^0.0.1-security",
+        "multer": "^1.4.5-lts.2",
+        "nspell": "^2.1.5",
+        "openai": "^4.91.1"
+    },
+    "description": "",
+    "devDependencies": {
+        "eslint": "^9.39.0",
+        "jest": "^30.2.0",
+        "prettier": "^3.6.2"
+    }
 }

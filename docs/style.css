@@ -1,12 +1,12 @@
 :root {
-    --accent-color: #1b5e20;          /* Dark green - main branding */
-    --accent-color-light: #a5d6a7;    /* Light pastel green - secondary accent */
+    --accent-color: #1b5e20;          
+    --accent-color-light: #a5d6a7;    
 }
 
 body {
     margin: 0;
-    background-color: white;         /* Light theme background */
-    color: black;                    /* Default text color */
+    background-color: white;         
+    color: black;                    
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     overflow: hidden;
@@ -285,8 +285,8 @@ body.inverted {
     padding: 2px 6px;
     border-radius: 4px;
     font-weight: bold;
-    display: inline-block; /* ✅ Prevents stretching empty space */
-    margin: 2px; /* ✅ Reduces clumping between words */
+    display: inline-block; 
+    margin: 2px; 
 }
 
 .submit-btn.secondary {
@@ -294,9 +294,9 @@ body.inverted {
     color: white;
     margin-top: 10px;
 }
-/* ========== ADD THESE NEW STYLES ========== */
+
 :root {
-    --animation-timing: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Add to existing :root */
+    --animation-timing: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
 }
 
 @keyframes fadeIn {
@@ -315,18 +315,15 @@ body.inverted {
     100% { opacity: 0.5; }
 }
 
-/* Add after existing body styles */
 body { 
     opacity: 0;
     animation: fadeIn 0.8s var(--animation-timing) forwards; 
 }
 
-/* Add after .main-content declaration */
 .main-content {
     animation: fadeIn 0.8s var(--animation-timing) 0.2s both;
 }
 
-/* Add after existing .right-panel styles */
 .right-panel {
     animation: slideInRight 0.8s var(--animation-timing) 0.4s both;
     background: linear-gradient(145deg, rgba(152, 177, 158, 0.95) 0%, rgba(152, 177, 158, 0.85) 100%);
@@ -335,20 +332,18 @@ body {
     border-left: 1px solid rgba(255,255,255,0.15);
 }
 
-/* Add after .footnote declaration */
 .footnote {
     animation: fadeIn 0.8s var(--animation-timing) 0.6s both;
 }
 
-/* Add these enhancements AFTER existing styles for each component */
-#user-input:focus { /* Add after existing #user-input styles */
+#user-input:focus { 
     outline: none;
     border-color: var(--accent-color);
     box-shadow: 0 4px 12px rgba(27, 94, 32, 0.2);
     transform: scale(1.005);
 }
 
-.submit-btn { /* Add after existing .submit-btn styles */
+.submit-btn { 
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -367,7 +362,6 @@ body {
     transition: transform 0.5s ease;
 }
 
-/* Add loading bar styles at the end */
 .loading-bar {
     position: fixed;
     top: 0;
@@ -379,3 +373,52 @@ body {
     z-index: 999;
 }
 
+@media (max-width: 800px) {
+    .right-panel {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-left: none;
+        border-top: 2px solid #ccc;
+    }
+
+    .main-content {
+        padding: 0 2%;
+    }
+
+    .input-form, .submitted-content {
+        padding: 100px 5%;
+    }
+}
+
+.reload-btn, .copy-btn {
+    background: linear-gradient(to right, var(--accent-color), var(--accent-color-light));
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 15px 5px;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reload-btn:hover, .copy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(27, 94, 32, 0.2);
+}
+
+.copy-btn.copied {
+    background: #4CAF50 !important;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.reload-btn.loading {
+    animation: spin 0.8s linear infinite;
+
+}
