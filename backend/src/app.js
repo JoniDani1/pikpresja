@@ -8,7 +8,7 @@ const app = express();
 
 // --- Middleware ---
 // Serve the static frontend
-const frontendPath = path.join(__dirname, "../../docs");
+const frontendPath = path.join(__dirname, "../docs");
 app.use(express.static(frontendPath));
 
 app.use(corsMiddleware);
