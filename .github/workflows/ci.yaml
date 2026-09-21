@@ -23,13 +23,13 @@ jobs:
         working-directory: ./backend
         run: npm install
 
-      # - name: Run linter
-      #   working-directory: ./backend
-      #   run: npm run lint
+      - name: Run linter
+        working-directory: ./backend
+        run: npm run lint
 
-      # - name: Run tests
-      #   working-directory: ./backend
-      #   run: npm test
-      #   env:
-      #     OPENAI_API_KEY: fake-key-123
-      #     PORT: 5000
+      - name: Run tests
+        working-directory: ./backend
+        run: npm test
+        env:
+          OPENAI_API_KEY: fake-key-123
+          PORT: 5000
