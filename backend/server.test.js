@@ -1,6 +1,6 @@
 const request = require('supertest');
 const { app, server } = require('./server'); // Assuming your Express app is exported from server.js
-const { OpenAI } = require('openai');
+
 
 jest.mock('openai', () => {
   const mockOpenAI = {
