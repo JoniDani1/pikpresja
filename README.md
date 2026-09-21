@@ -12,7 +12,7 @@ This project was built not only to solve a unique problem but also to serve as a
 
 ### Screenshot
 
-*It is highly recommended to add a screenshot of the application in action here.*
+
 
 ![Application Screenshot](./docs/images/screenshot.png)
 
