@@ -12,83 +12,121 @@ This project was built not only to solve a unique problem but also to serve as a
 
 ### Screenshot
 
-
-
 ![Application Screenshot](./docs/images/screenshot.png)
 
 ---
 
 ## Features
 
--   **Real-time Correction:** Get instant grammar and spelling corrections for Albanian text.
--   **Side-by-Side Comparison:** Clearly see the suggested changes highlighted next to your original text.
--   **Detailed Suggestions:** View a list of specific corrections to understand the changes made.
--   **Secure Backend:** The server is built with security in mind, including rate limiting to prevent abuse.
--   **Professional Codebase:** The project includes a full test suite, linting, and code formatting to ensure high-quality, maintainable code.
+- **Real-time Correction:** Get instant grammar and spelling corrections for Albanian text.
+- **Side-by-Side Comparison:** Clearly see the suggested changes highlighted next to your original text.
+- **Detailed Suggestions:** View a list of specific corrections to understand the changes made.
+- **Secure Backend:** The server is built with security in mind, including rate limiting to prevent abuse.
+- **Professional Codebase:** The project includes a full test suite, linting, and code formatting to ensure high-quality, maintainable code.
 
 ---
 
 ## Tech Stack
 
--   **Frontend:** HTML5, CSS3, Vanilla JavaScript
--   **Backend:** Node.js, Express.js
--   **API:** OpenAI API (gpt-3.5-turbo)
--   **Testing:** Jest & Supertest
--   **Code Quality:** ESLint & Prettier
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript
+- **Backend:** Node.js, Express.js
+- **API:** OpenAI API (gpt-3.5-turbo)
+- **Testing:** Jest & Supertest
+- **Code Quality:** ESLint & Prettier
+- **Containerization:** Docker & Docker Compose
 
 ---
 
 ## Setup and Installation
 
-To get this project running locally, follow these steps:
+### Option 1 — Running with Docker (Recommended)
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/your-username/gramarly.git
-    cd gramarly
-    ```
+The easiest way to run this project. No need to install Node.js or any dependencies manually.
 
-2.  **Set up the Backend:**
-    -   Navigate to the backend directory:
-        ```bash
-        cd backend
-        ```
-    -   Install the required dependencies:
-        ```bash
-        npm install
-        ```
-    -   Create an environment file. Make a copy of `.env.example` and name it `.env`.
-        ```bash
-        cp .env.example .env
-        ```
-    -   Open the `.env` file and add your OpenAI API key:
-        ```
-        OPEN_API_KEY=your_openai_api_key_here
-        ```
+1. **Clone the repository:**
+```bash
+    git clone https://github.com/JoniDani1/pikpresja.git
+    cd pikpresja
+```
+
+2. **Create an environment file:**
+```bash
+    cp backend/.env.example backend/.env
+```
+    Open `backend/.env` and add your OpenAI API key:
+    OPENAI_API_KEY=your_openai_api_key_here
+PORT=5000
+
+
+3. **Build and run with Docker:**
+```bash
+    docker compose up --build
+```
+
+4. **Open the application:**
+    Navigate to `http://localhost:5000` in your browser.
+
+To stop the application:
+```bash
+docker compose down
+```
 
 ---
 
-## How to Run
+### Option 2 — Running Locally (Manual Setup)
 
-1.  **Start the backend server:**
-    -   Make sure you are in the `backend` directory.
-    -   Run the start command:
-        ```bash
-        npm start
-        ```
-    -   The server will be running at `http://localhost:5000`.
+1. **Clone the repository:**
+```bash
+    git clone https://github.com/JoniDani1/pikpresja.git
+    cd pikpresja
+```
 
-2.  **Open the application:**
-    -   Open your web browser and navigate to `http://localhost:5000`.
+2. **Navigate to the backend directory:**
+```bash
+    cd backend
+```
+
+3. **Install dependencies:**
+```bash
+    npm install
+```
+
+4. **Create an environment file:**
+```bash
+    cp .env.example .env
+```
+    Open `.env` and add your OpenAI API key:
+    OPENAI_API_KEY=your_openai_api_key_here
+PORT=5000
+
+
+5. **Start the server:**
+```bash
+    npm start
+```
+
+6. **Open the application:**
+    Navigate to `http://localhost:5000` in your browser.
 
 ---
 
 ## Running Tests
 
-To ensure the application is working correctly, you can run the test suite.
+1. Navigate to the `backend` directory:
+```bash
+    cd backend
+```
 
-1.  Navigate to the `backend` directory.
-2.  Run the test command:
-    ```bash
+2. Run the test suite:
+```bash
     npm test
-    ```
+```
+
+---
+
+## Environment Variables
+
+| Variable | Description |
+|---|---|
+| `OPENAI_API_KEY` | Your OpenAI API key (get one at platform.openai.com) |
+| `PORT` | Port the server runs on (default: 5000) |
