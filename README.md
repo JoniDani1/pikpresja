@@ -8,7 +8,6 @@ This project was built not only to solve a unique problem but also to serve as a
 
 ### Live Demo
 
-*[Link to your live application (when deployed)]*
 
 ### Screenshot
 
